@@ -1,6 +1,5 @@
 package io.github.quiltservertools.blockbotapi.mixin;
 
-import com.mojang.brigadier.context.CommandContext;
 import io.github.quiltservertools.blockbotapi.event.ChatMessageEvent;
 import io.github.quiltservertools.blockbotapi.sender.MessageSender;
 import io.github.quiltservertools.blockbotapi.sender.PlayerMessageSender;
@@ -21,8 +20,8 @@ public abstract class MeCommandMixin {
         method = "method_43645",
         at = @At(value = "INVOKE", target = "Lnet/minecraft/server/PlayerManager;broadcast(Lnet/minecraft/network/message/SignedMessage;Lnet/minecraft/server/command/ServerCommandSource;Lnet/minecraft/network/message/MessageType$Parameters;)V")
     )
-    private static void relayPlayerMeToDiscord(CommandContext<ServerCommandSource> ctx, SignedMessage message, CallbackInfo ci) {
-        var entity = ctx.getSource().getEntity();
+    private static void relayPlayerMeToDiscord(PlayerManager playerManager, ServerCommandSource source, SignedMessage message, CallbackInfo ci) {
+        var entity = source.getEntity();
         MessageSender sender;
         if (entity instanceof ServerPlayerEntity player) {
             sender = new PlayerMessageSender(
@@ -31,8 +30,8 @@ public abstract class MeCommandMixin {
             );
         } else {
             sender = new MessageSender(
-                Text.literal(ctx.getSource().getName()),
-                ctx.getSource().getDisplayName(),
+                Text.literal(source.getName()),
+                source.getDisplayName(),
                 MessageSender.MessageType.EMOTE
             );
         }
