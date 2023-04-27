@@ -1,6 +1,6 @@
 package io.github.quiltservertools.blockbotdiscord.extensions
 
-import com.kotlindiscord.kord.extensions.checks.inGuild
+import com.kotlindiscord.kord.extensions.checks.anyGuild
 import com.kotlindiscord.kord.extensions.checks.isNotBot
 import com.kotlindiscord.kord.extensions.extensions.Extension
 import com.kotlindiscord.kord.extensions.extensions.event
@@ -87,7 +87,7 @@ class BlockBotApiExtension : Extension(), Bot {
 
         event<MessageCreateEvent> {
             check { isNotBot() }
-            check { inGuild(Snowflake(config[BotSpec.guild])) }
+            check { anyGuild() }
             check { failIfNot(config.getChannelsBi().containsValue(event.message.channelId.value)) }
 
             action {

@@ -1,12 +1,12 @@
 [bot]
 # Discord Bot token
 token = ""
-# Discord guild/server id
+# Primary Discord guild/server id, used for commands and linking
 guild =
 
     # Channel IDs for the bot to use. Only the `chat` channel is required, others can be added or deleted
     [bot.channels]
-    # Chat relay channel
+    # Chat relay channel (should be in the primary Discord server so mentions work properly)
     chat =
     # Console relay channel (can be deleted)
     console =

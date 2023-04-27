@@ -21,7 +21,7 @@ fun Config.getChannelsBi(): BiMap<String, ULong> = HashBiMap.create(this[BotSpec
 
 suspend fun Config.getChannel(name: String, bot: ExtensibleBot): GuildMessageChannel {
     val channel: GuildMessageChannel? =
-        this[BotSpec.channels][name]?.let { Snowflake(it) }?.let { this.getGuild(bot).getChannelOf(it) }
+        this[BotSpec.channels][name]?.let { Snowflake(it) }?.let { bot.getKoin().get<Kord>().getChannelOf(it) }
     if (channel == null) {
         logWarn("Invalid channel '${name}'. Make sure it is defined and correct in your config")
     }
