@@ -11,6 +11,7 @@ A Minecraft - Discord chat linking mod
 ## Fork Changes
 * Downgraded the mod to 1.19.2 while keeping the fix that was committed after the 1.19.3 update
 * Bumped the required fabric-language-kotlin version since Kord updated and broke things, and changed from `~` to `>=`
+  * For best results, use [QKL 1.0.2](https://modrinth.com/mod/qkl/version/1.0.2+kt.1.8.0+flk.1.9.0) and [QKL Core 2.0.2](https://modrinth.com/mod/qkl/version/2.0.2+kt.1.8.20+flk.1.9.3)
 * Allowed the console channel to be in a different guild than the main one
 
 ## Initial Configuration
