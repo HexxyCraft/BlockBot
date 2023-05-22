@@ -50,12 +50,6 @@ class LinkingExtension : Extension() {
 
             guild(config.getGuild(bot))
 
-            val roles = config[LinkingSpec.requiredRoles]
-            if (roles.isNotEmpty()) {
-                allowByDefault = false
-                check { memberFor(this.event)?.asMemberOrNull()?.roleIds?.any { roles.contains(it.value) } }
-            }
-
             action {
                 if (!linkCodes.containsKey(arguments.code)) {
                     respond {
